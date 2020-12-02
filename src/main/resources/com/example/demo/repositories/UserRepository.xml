@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repositories.UserRepository">
+    <insert id="insert" parameterType="com.example.demo.domains.UserDTO">
+    insert into users(userId, password, name) 
+    values (#{userId}, #{password}, #{name})
+    </insert>
+    <select id="login" resultType="com.example.demo.domains.UserDTO" 
+                       parameterType="com.example.demo.domains.UserDTO">
+        select * from users 
+        where userId like #{userId} and password like #{password}
+    </select>
+</mapper>
