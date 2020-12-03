@@ -7,5 +7,5 @@ import lombok.Setter;
 
 @Component @Getter @Setter
 public class UserDTO {
-    protected String userId, name, password;
+    private String userId, password, name;
 }

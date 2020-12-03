@@ -16,11 +16,8 @@ public class UserController {
     @Autowired UserService userService;
     @PostMapping("/users")
     public Map<String, String> join(@RequestBody UserDTO user){
-        System.out.println("===== join =====");
         Map<String, String> map = new HashMap<>();
-        System.out.println("아이디: "+user.getUserId());
-        System.out.println("비밀번호: "+user.getPassword());
-        System.out.println("이름: "+user.getName());
+        System.out.println("===== join =====");
         int result = userService.join(user);
         if(result == 1){
             map.put("name", user.getName());
@@ -31,8 +28,8 @@ public class UserController {
     }
     @PostMapping("/users/login")
     public Map<String, String> login(@RequestBody UserDTO user){
-        System.out.println("===== login =====");
         Map<String, String> map = new HashMap<>();
+        System.out.println("===== login =====");
         UserDTO result = userService.login(user);
         if(result != null){
             map.put("name", result.getName());

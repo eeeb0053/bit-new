@@ -12,12 +12,12 @@ public class UserServiceImpl implements UserService {
     @Autowired UserRepository userRepository;
     @Override
     public int join(UserDTO user) {
-       return userRepository.insert(user);
+        return userRepository.insert(user);
     }
 
     @Override
     public UserDTO login(UserDTO user) {
-        // TODO Auto-generated method stub
         return userRepository.login(user);
     }
+
 }
