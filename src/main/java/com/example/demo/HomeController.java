@@ -12,7 +12,7 @@ public class HomeController {
         System.out.println("==== 서버가 시작됨 ====");
         return "index";
     }
-    @GetMapping("/forms/{dir}/{fname}")
+    @GetMapping("/move/{dir}/{fname}")
     public String move(@PathVariable String dir,
     @PathVariable String fname){
         System.out.println("이동하려는 디렉토리: "+dir);

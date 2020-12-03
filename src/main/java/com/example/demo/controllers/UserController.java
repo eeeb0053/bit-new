@@ -7,6 +7,8 @@ import com.example.demo.domains.UserDTO;
 import com.example.demo.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,30 +17,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired UserService userService;
     @PostMapping("/users")
-    public Map<String, String> join(@RequestBody UserDTO user){
-        System.out.println("===== join =====");
-        Map<String, String> map = new HashMap<>();
-        System.out.println("아이디: "+user.getUserId());
-        System.out.println("비밀번호: "+user.getPassword());
-        System.out.println("이름: "+user.getName());
+    public Map<?, ?> join(@RequestBody UserDTO user){
+        var map = new HashMap<>();
         int result = userService.join(user);
         if(result == 1){
-            map.put("name", user.getName());
-        }else{
-            map.put("name", "FAILURE");
+            map.put("message","SUCCESS");
         }
         return map;
     }
     @PostMapping("/users/login")
-    public Map<String, String> login(@RequestBody UserDTO user){
-        System.out.println("===== login =====");
-        Map<String, String> map = new HashMap<>();
+    public Map<?, ?> login(@RequestBody UserDTO user){
+        var map = new HashMap<>();
         UserDTO result = userService.login(user);
         if(result != null){
-            map.put("name", result.getName());
+            map.put("message", "SUCCESS");
+            map.put("loginUser",result);
+            
         }else{
-            map.put("name", "FAILURE");
+            map.put("message","FAILURE");
+            map.put("loginUser", null);
         }
+
+        return map;
+    }
+    @GetMapping("/users/{userId}")
+    public Map<?,?> mypage(@PathVariable String userId){
+        var map = new HashMap<>();
+        System.out.println("마이페이지에서 넘어온 아이디: "+userId);
+        map.put("message", "SUCCESS");
         return map;
     }
 }
