@@ -17,7 +17,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO login(UserDTO user) {
-        // TODO Auto-generated method stub
         return userRepository.login(user);
+    }
+
+    @Override
+    public UserDTO findById(String userId) {
+        return userRepository.selectById(userId);
+    }
+
+    @Override
+    public int update(UserDTO user) {
+        return userRepository.update(user);
+    }
+
+    @Override
+    public int remove(UserDTO user) {
+        return userRepository.delete(user);
     }
 }

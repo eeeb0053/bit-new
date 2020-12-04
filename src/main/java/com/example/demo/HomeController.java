@@ -14,7 +14,7 @@ public class HomeController {
     }
     @GetMapping("/move/{dir}/{fname}")
     public String move(@PathVariable String dir,
-    @PathVariable String fname){
+                        @PathVariable String fname){
         System.out.println("이동하려는 디렉토리: "+dir);
         System.out.println("이동하려는 파일명: "+fname);
         return String.format("%s/%s", dir, fname);
